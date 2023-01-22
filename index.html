@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<style>
+@charset "UTF-8";
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+:root {
+	/* upyr, chort, povitruya, poludnytsya, polyovyk, chugaister, mavka, wandering_fier, nichnytsya, vovkulaka*/
+	--upyr-img: url("https://i.imgur.com/0vde9iy.png");
+	--chort-img: url("https://i.imgur.com/0eXniV6.png");
+	--povitruya-img: url("https://i.imgur.com/e2f7jfo.png");
+	--poludnytsya-img: url("https://i.imgur.com/UCrkFns.png");
+	--polyovyk-img: url("https://i.imgur.com/7FGqTw2.png");
+	--chugaister-img: url("https://i.imgur.com/Vp8DNHR.png");
+	--mavka-img: url("https://i.imgur.com/2kpBH7S.png");
+	--wandering_fier-img: url("https://i.imgur.com/FWBYnGn.png");
+	--nichnytsya-img: url("https://i.imgur.com/aivogwu.png");
+	--vovkulaka-img: url("https://i.imgur.com/a5thghb.png");
+
+	--upyr-tcap-color: #e37896;
+	--upyr-bcap-color: #a91b43;
+	--upyr-bg-top-color: #e1b7c5;
+	--upyr-bg-midle-color: #beadb3;
+	--upyr-bg-bottom-color: #cd859d;
+	--upyr-gradient: linear-gradient(
+		60deg,
+		var(--upyr-bg-bottom-color) 0%,
+		var(--upyr-bg-midle-color) 50%,
+		var(--upyr-bg-top-color) 100%
+	);
+
+	--chort-tcap-color: #e58169;
+	--chort-bcap-color: #bc3d1b;
+	--chort-bg-top-color: #e2bab2;
+	--chort-bg-midle-color: #baa8a6;
+	--chort-bg-bottom-color: #be7f76;
+	--chort-gradient: linear-gradient(
+		60deg,
+		var(--chort-bg-bottom-color) 0%,
+		var(--chort-bg-midle-color) 50%,
+		var(--chort-bg-top-color) 100%
+	);
+
+	--povitruya-tcap-color: #fcce81;
+	--povitruya-bcap-color: #ea8828;
+	--povitruya-bg-top-color: #eccba2;
+	--povitruya-bg-midle-color: #bdaa99;
+	--povitruya-bg-bottom-color: #b8855f;
+	--povitruya-gradient: linear-gradient(
+		60deg,
+		var(--povitruya-bg-bottom-color) 0%,
+		var(--povitruya-bg-midle-color) 50%,
+		var(--povitruya-bg-top-color) 100%
+	);
+
+	--poludnytsya-tcap-color: #ffe18f;
+	--poludnytsya-bcap-color: #fabd18;
+	--poludnytsya-bg-top-color: #f1d9b5;
+	--poludnytsya-bg-midle-color: #d1c1a8;
+	--poludnytsya-bg-bottom-color: #d8b271;
+	--poludnytsya-gradient: linear-gradient(
+		60deg,
+		var(--poludnytsya-bg-bottom-color) 0%,
+		var(--poludnytsya-bg-midle-color) 50%,
+		var(--poludnytsya-bg-top-color) 100%
+	);
+
+	--polyovyk-tcap-color: #e9eb98;
+	--polyovyk-bcap-color: #c2c719;
+	--polyovyk-bg-top-color: #e7e7c1;
+	--polyovyk-bg-midle-color: #c6c6ba;
+	--polyovyk-bg-bottom-color: #b5b47b;
+	--polyovyk-gradient: linear-gradient(
+		60deg,
+		var(--polyovyk-bg-bottom-color) 0%,
+		var(--polyovyk-bg-midle-color) 50%,
+		var(--polyovyk-bg-top-color) 100%
+	);
+
+	/* vovkulaka */
+	--vovkulaka-tcap-color: #b071db;
+	--vovkulaka-bcap-color: #783fa5;
+	--vovkulaka-bg-top-color: #ceb9e2;
+	--vovkulaka-bg-midle-color: #b5aab8;
+	--vovkulaka-bg-bottom-color: #a896c0;
+	--vovkulaka-gradient: linear-gradient(
+		60deg,
+		var(--vovkulaka-bg-bottom-color) 0%,
+		var(--vovkulaka-bg-midle-color) 50%,
+		var(--vovkulaka-bg-top-color) 100%
+	);
+
+	/* nichnytsya */
+	--nichnytsya-tcap-color: #8a8be7;
+	--nichnytsya-bcap-color: #4f52af;
+	--nichnytsya-bg-top-color: #bfc6f4;
+	--nichnytsya-bg-midle-color: #bcbfc6;
+	--nichnytsya-bg-bottom-color: #8d96bf;
+	--nichnytsya-gradient: linear-gradient(
+		60deg,
+		var(--nichnytsya-bg-bottom-color) 0%,
+		var(--nichnytsya-bg-midle-color) 50%,
+		var(--nichnytsya-bg-top-color) 100%
+	);
+
+	/* wandering_fier */
+	--wandering_fier-tcap-color: #74dbfa;
+	--wandering_fier-bcap-color: #18b3d2;
+	--wandering_fier-bg-top-color: #b5e4ee;
+	--wandering_fier-bg-midle-color: #b9c4c6;
+	--wandering_fier-bg-bottom-color: #71abb6;
+	--wandering_fier-gradient: linear-gradient(
+		60deg,
+		var(--wandering_fier-bg-bottom-color) 0%,
+		var(--wandering_fier-bg-midle-color) 50%,
+		var(--wandering_fier-bg-top-color) 100%
+	);
+
+	/* mavka */
+	--mavka-tcap-color: #a0e1cd;
+	--mavka-bcap-color: #01a596;
+	--mavka-bg-top-color: #c9e9de;
+	--mavka-bg-midle-color: #a6b6b3;
+	--mavka-bg-bottom-color: #79bab2;
+	--mavka-gradient: linear-gradient(
+		60deg,
+		var(--mavka-bg-bottom-color) 0%,
+		var(--mavka-bg-midle-color) 50%,
+		var(--mavka-bg-top-color) 100%
+	);
+
+	/* chugaister */
+	--chugaister-tcap-color: #c0df92;
+	--chugaister-bcap-color: #7ca943;
+	--chugaister-bg-top-color: #d1e1bc;
+	--chugaister-bg-midle-color: #ccd3c1;
+	--chugaister-bg-bottom-color: #97ab78;
+	--chugaister-gradient: linear-gradient(
+		60deg,
+		var(--chugaister-bg-bottom-color) 0%,
+		var(--chugaister-bg-midle-color) 50%,
+		var(--chugaister-bg-top-color) 100%
+	);
+}
+
+:root {
+	--desc-bg: var(--nichnytsya-bcap-color);
+	--card-back-gradient: var(--poludnytsya-gradient);
+	--radius: 8px;
+	--gap: 16px;
+	--aside_width: 360px;
+
+	font-size: 16px;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+	color: white;
+	padding: 0;
+	margin: 0;
+	min-height: 100vh;
+	background-color: var(--desc-bg);
+	display: grid;
+	grid-template-columns: auto var(--aside_width);
+}
+
+@media (max-width: 640px) {
+	body {
+		grid-template-columns: 1fr;
+	}
+
+	aside {
+		order: -1;
+	}
+}
+
+@media (orientation: portrait) {
+	body {
+		grid-template-columns: 1fr;
+	}
+
+	aside {
+		order: -1;
+	}
+}
+
+@media (max-width: 1024px) and (orientation: landscape) {
+	:root {
+		--aside_width: 240px;
+	}
+}
+
+main {
+	position: relative;
+	padding: calc(var(--gap) * 2);
+	display: flex;
+	flex-direction: column;
+	/* align-items: center;
+    justify-content: center; */
+}
+
+aside {
+	background-color: rgba(32, 32, 32, 0.32);
+	padding: var(--gap);
+}
+
+.card_table {
+	width: 100%;
+	/* max-width: 600px; */
+	display: grid;
+	--col: 5;
+	grid-template-columns: repeat(var(--col), 1fr);
+	gap: var(--gap);
+	margin: auto;
+}
+
+.card_table.easier {
+	--col: 4;
+}
+
+.card_table.easy {
+	--col: 4;
+}
+
+.card_table.normal {
+	--col: 5;
+}
+
+.card_table.hard {
+	--col: 6;
+}
+
+.card_table.harder {
+	--col: 8;
+}
+
+@media (orientation: landscape) {
+	aside {
+		max-height: 100vh;
+		overflow: auto;
+		position: sticky;
+		top: 0;
+	}
+}
+
+/* 
+ * and (orientation: landscape)
+ */
+@media (max-width: 1024px) {
+	.card_table {
+		--col: 5;
+	}
+
+	.card_table.normal {
+		--col: 5;
+	}
+
+	.card_table.easier {
+		--col: 4;
+	}
+
+	.card_table.easy {
+		--col: 4;
+	}
+
+	.card_table.hard {
+		--col: 5;
+	}
+
+	.card_table.harder {
+		--col: 6;
+	}
+}
+
+@media (max-width: 640px) {
+	:root {
+		--gap: 8px;
+		--radius: 4px;
+	}
+
+	.card_table {
+		--col: 3;
+	}
+
+	.card_table.normal {
+		--col: 4;
+	}
+
+	.card_table.easier {
+		--col: 2;
+	}
+
+	.card_table.easy {
+		--col: 3;
+	}
+
+	.card_table.hard {
+		--col: 4;
+	}
+
+	.card_table.harder {
+		--col: 4;
+	}
+}
+
+.card-place {
+	border: 2px solid rgba(255, 255, 255, 0.5);
+	padding: calc(var(--gap) / 1.5);
+	border-radius: calc(var(--radius) * 2);
+}
+
+.start-button {
+	display: block;
+	margin: calc(var(--gap) * 2) auto;
+	transition: all 0.1s ease-in-out;
+	border: 0;
+	border-radius: var(--radius);
+	padding: calc(var(--gap) * 1.5) calc(var(--gap) * 3);
+	font: inherit;
+	font-size: 2rem;
+	text-transform: uppercase;
+	background: var(--poludnytsya-bcap-color);
+	cursor: pointer;
+	color: black;
+}
+
+.start-button:hover,
+.start-button:focus {
+	transform: translateY(calc(var(--gap) * -1 + 4px));
+	background: var(--poludnytsya-tcap-color);
+}
+
+h1 {
+	text-align: center;
+	color: var(--poludnytsya-tcap-color);
+	font-size: 2.8rem;
+	text-transform: uppercase;
+	margin: 0;
+	padding: var(--gap) var(--gap) calc(var(--gap) * 2);
+}
+
+p {
+	text-align: center;
+	color: white;
+	font-size: 1rem;
+	margin: 0;
+	padding: var(--gap);
+}
+
+button.card {
+	display: block;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	background-color: transparent;
+	outline: none;
+}
+
+#stats {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	text-align: center;
+	color: white;
+	padding: 2px;
+	font-weight: bold;
+	font-size: 12px;
+}
+
+.card {
+	--deg: 0deg;
+	user-select: none;
+	position: relative;
+	perspective: 1000px;
+	cursor: pointer;
+	width: 100%;
+	/* max-width: 200px; */
+	transition: all 0.1s ease-in-out;
+	border-radius: var(--radius);
+	transform: rotate(var(--deg)) translateY(0);
+}
+
+.card:hover,
+.card:focus {
+	transform: rotate(var(--deg)) translateY(calc(var(--gap) * -1 + 4px));
+}
+
+.card:disabled {
+	pointer-events: none;
+}
+
+.card:after {
+	content: "";
+	position: relative;
+	width: 100%;
+	display: block;
+	padding-top: 155%;
+}
+
+.card .card__side_back,
+.card .card__side_front {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	text-align: center;
+	border-radius: var(--radius);
+	transform-style: preserve-3d;
+	backface-visibility: hidden;
+	transition: all 0.3s ease-in-out, box-shadow 0.1s ease-in-out;
+	background-color: #f0f4f8;
+	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
+}
+
+.card:hover .card__side_back,
+.card:hover .card__side_front,
+.card:focus .card__side_back,
+.card:focus .card__side_front {
+	box-shadow: 0 16px 16px -8px rgba(0, 0, 0, 0.5);
+}
+
+.card .card__side_back {
+	z-index: 900;
+}
+
+.card .card__side_back {
+	z-index: 1000;
+	transform: rotateY(-180deg);
+	background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 30 30"><path fill="rgba(0,0,0,0.4)" d="M448.025,617h0a2,2,0,0,1,2-2h4a2,2,0,0,1,2,2h-8Zm-8.707,0h0l-1.413-1.414a2,2,0,0,1,2.828-2.829l1.414,1.414,1.414-1.414a2,2,0,1,1,2.829,2.829L444.976,617h-5.658Zm-11.294,0h0a2,2,0,0,1,2-2h4a2,2,0,0,1,2,2h-8Zm27-3v-4A2,2,0,0,1,457,608v8A2,2,0,0,1,455.024,614ZM427,616v-8h.023a2,2,0,0,1,2,2v4a2,2,0,0,1-2,2Zm20.806-4.657a2,2,0,0,1,0-2.829l5.658-5.657.3-.3a.68.68,0,1,0,0-1.112l-1.564-1.565-4.395-4.393a2,2,0,0,1,2.83-2.829l3.094,3.094.036.035,2.829,2.829a1.988,1.988,0,0,1,.408.589v1.65a.965.965,0,1,0-.408,1.7,1.988,1.988,0,0,1,.408.589v1.651a1.979,1.979,0,0,1-.409.589l-2.828,2.828-.025.024-3.105,3.106a2,2,0,0,1-2.828,0Zm-14.143,0-5.657-5.656-.3-.3a.655.655,0,1,0-.7-.589v-1.651a1.942,1.942,0,0,1,.148.484,1.183,1.183,0,1,0,.555-2.185,1.987,1.987,0,0,1-.555-1.071,2.011,2.011,0,0,1-.148.483V599.2a2.018,2.018,0,0,1,.148.482,1.986,1.986,0,0,1,.556-1.071l.3-.3,5.657-5.656a2,2,0,0,1,2.829,2.829l-3.1,3.1-.034.035-2.829,2.828a.681.681,0,1,0,0,1.113l2.829,2.829,3.129,3.129a2,2,0,0,1-2.829,2.829ZM439,602a3,3,0,1,1,3,3A3,3,0,0,1,439,602Zm16.024-8v-4A2,2,0,0,1,457,588v8A2,2,0,0,1,455.024,594ZM427,596v-8h.023a2,2,0,0,1,2,2v4a2,2,0,0,1-2,2Zm16.563-4.756-1.415-1.415-1.414,1.414a2,2,0,0,1-2.828-2.829L439.318,587h5.659l1.414,1.414a2,2,0,0,1-2.829,2.829ZM450.024,589a2,2,0,0,1-2-2h8a2,2,0,0,1-2,2Zm-20,0a2,2,0,0,1-2-2h8a2,2,0,0,1-2,2Z" transform="translate(-427 -587)"/></svg>')
+			center/30px repeat,
+		var(--card-back-gradient);
+}
+
+.card.fliped .card__side_front {
+	z-index: 900;
+	transform: rotateY(180deg);
+}
+
+.card.fliped .card__side_back {
+	z-index: 1000;
+	transform: rotateX(0deg) rotateY(0deg);
+}
+
+/* upyr, chort, povitruya, poludnytsya, polyovyk, chugaister, mavka, wandering_fier, nichnytsya, vovkulaka*/
+.card.upyr .card__side_front {
+	background: var(--upyr-img) center/90% no-repeat, var(--upyr-gradient);
+}
+
+.card.chort .card__side_front {
+	background: var(--chort-img) center/90% no-repeat, var(--chort-gradient);
+}
+
+.card.povitruya .card__side_front {
+	background: var(--povitruya-img) center/90% no-repeat,
+		var(--povitruya-gradient);
+}
+
+.card.poludnytsya .card__side_front {
+	background: var(--poludnytsya-img) center/90% no-repeat,
+		var(--poludnytsya-gradient);
+}
+
+.card.polyovyk .card__side_front {
+	background: var(--polyovyk-img) center/90% no-repeat, var(--polyovyk-gradient);
+}
+
+.card.chugaister .card__side_front {
+	background: var(--chugaister-img) center/90% no-repeat,
+		var(--chugaister-gradient);
+}
+
+.card.mavka .card__side_front {
+	background: var(--mavka-img) center/90% no-repeat, var(--mavka-gradient);
+}
+
+.card.wandering_fier .card__side_front {
+	background: var(--wandering_fier-img) center/90% no-repeat,
+		var(--wandering_fier-gradient);
+}
+
+.card.nichnytsya .card__side_front {
+	background: var(--nichnytsya-img) center/90% no-repeat,
+		var(--nichnytsya-gradient);
+}
+
+.card.vovkulaka .card__side_front {
+	background: var(--vovkulaka-img) center/90% no-repeat,
+		var(--vovkulaka-gradient);
+}
+
+/* level-checker-button-group
+ */
+
+.level-checker-button-group {
+	display: flex;
+	gap: var(--gap);
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.level-checker-button-group .radio-btn {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+input[type="radio"] {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	cursor: pointer;
+
+	--size: 24px;
+
+	border-radius: 50%;
+	width: var(--size);
+	height: var(--size);
+
+	border: 2px solid rgba(255, 255, 255, 0.5);
+	transition: 0.1s all ease-in-out;
+	outline: none;
+	margin-right: 5px;
+
+	position: relative;
+	top: 4px;
+	--color-radio: var(--chort-bg-bottom-color);
+}
+
+.radio-btn:nth-child(1) input[type="radio"] {
+	--color-radio: var(--polyovyk-bg-bottom-color);
+}
+
+.radio-btn:nth-child(2) input[type="radio"] {
+	--color-radio: var(--poludnytsya-bg-bottom-color);
+}
+
+.radio-btn:nth-child(3) input[type="radio"] {
+	--color-radio: var(--povitruya-bg-bottom-color);
+}
+
+.radio-btn:nth-child(4) input[type="radio"] {
+	--color-radio: var(--chort-bg-bottom-color);
+}
+
+.radio-btn:nth-child(5) input[type="radio"] {
+	--color-radio: var(--upyr-bg-bottom-color);
+}
+
+input[type="radio"]:checked {
+	border: calc(var(--size) / 2) solid var(--color-radio);
+}
+
+/* button, */
+label {
+	color: white;
+	padding: var(--gap) calc(var(--gap) / 2) 0;
+	border-radius: 0;
+	border: 0;
+	font-size: 12px;
+	font-weight: bold;
+	cursor: pointer;
+	user-select: none;
+}
+.victory {
+	display: flex;
+	flex-direction: column;
+	gap: var(--gap);
+	margin: 2rem 0;
+}
+article {
+	border-radius: var(--radius);
+	background-color: rgba(0, 0, 0, 0.5);
+	display: grid;
+	grid-template-columns: 128px auto;
+	gap: var(--gap);
+}
+article p {
+	text-align: left;
+}
+article h2 {
+	margin: var(--gap);
+}
+a {
+	color: inherit;
+}
+</style>
+    </head>
+    <body>
+        <main>
+            <div id="stats"></div>
+            <div class="victory"></div>
+            <section class="card_table" id="cardTable"></section>
+        
+        </main>
+        <aside>
+            <p>Find all the pairs</p>
+            <h1>Match-Match</h1>
+        
+            <div class="level-checker-button-group">
+                <div class="radio-btn">
+                    <input type="radio" name="level" id="easier" value="easier">
+                    <label for="easier">Easier</label>
+                </div>
+                <div class="radio-btn">
+                    <input type="radio" checked name="level" id="easy" value="easy">
+                    <label for="easy">Easy</label>
+                </div>
+                <div class="radio-btn">
+                    <input type="radio" name="level" id="normal" value="normal">
+                    <label for="normal">Normal</label>
+                </div>
+                <div class="radio-btn">
+                    <input type="radio" name="level" id="hard" value="hard">
+                    <label for="hard">Hard</label>
+                </div>
+                <div class="radio-btn">
+                    <input type="radio" name="level" id="harder" value="harder">
+                    <label for="harder">Harder</label>
+                </div>
+            </div>
+        
+            <button class="start-button" onclick="start(this)">Start</button>
+            <small>Character design by <a target="_black" href="https://www.behance.net/gasoline">Wachira</a></small>
+        </aside>
+        <script>
+            // upyr, chort, povitruya, poludnytsya, polyovyk, chugaister, mavka, wandering_fier, nichnytsya, vovkulaka
+const CHARACTERS = [
+	{
+		name: "Upyr",
+		code: "upyr",
+		description:
+			"Dead man that rises up from the grave and feeds on human or animal blood. Is a prototype of modern vampires. In Ukrainian mythology witches, sorcerers and other people who weren't accepted by church could become an Upyr after death. The characteristic features of Upyrs are blushing and rage."
+	},
+	{
+		name: "Chort",
+		code: "chort",
+		description:
+			"Evil spirit, generalization of vicious powers. The Guid between human and Devil. Chort is blamed in small harm, demages, fraud, temptation, often acussed in any failure or misfortune. Traditional image of Chort is humanlike creature with horns, goat legs and tail. In Ukrainian language the name of Chort is considered to be a curse word. Also there are a lot of idioms with this character."
+	},
+	{
+		name: "Povitruya",
+		code: "povitruya",
+		description:
+			"The daugter of mountain winds. Extremely beautiful, kind, joyful and playful. But if Povitrulya gets mad she can make a small whirlwind or twist a tree. Can fly, aware of herbs properties, helps lovers with their affairs and doesn't mind to charm some shepherds herself. Usually pictured dressed in flowers from head to toes, with long red hair and wings. It was believed that to marry Povitrulyua you need to steal her wings, however if she finds them again, she'll disappear in unknown direction."
+	},
+	{
+		name: "Poludnytsya",
+		code: "poludnytsya",
+		description:
+			"Female spirit that appears in midday usually in summer and haunts those who are still working or walking on a field. Is a representation of sunstroke. To those who don't rest in shade at the middle of the day she sends vertigo, can tickle to death or cut off the head. Poludnytsyas were pictured as young girls in white dresses or the old women with long grey hair. The sickle or scythe were important attributes. It also was considered that Poludnytsyas guard crops fields."
+	},
+	{
+		name: "Polyovyk",
+		code: "polyovyk",
+		description:
+			"Male patron spirit of fields, steppes and meadows. Polunytsya's husband. Appears to people in animal form, can change his height, in humanlike form may have horns, goat ears anfd tail, different colored eyes. Polyovyk leads astray, to dangerous places but is favorable to those who leave him treats. In this case he is really helpful : leads out children and cattle lost in the crops, protects field from hail and leads away rain on harvesting days."
+	},
+	{
+		name: "Chugaister",
+		code: "chugaister",
+		description:
+			"It was believed that it is a cursed by sorcerers man. Joyful, cheerful, big and overgrown with wool woodman with bright blue eyes. Likes to sing and dance. In general haunts the dangerous for humans female spirits and eats them. But is not really safe for people either - he can lead into the woods and dance one's to death."
+	},
+	{
+		name: "Mavka",
+		code: "mavka",
+		description:
+			"Spirit into wich the drowned or unbaptized dead girls turn. The most common image of Mavka is greenhaired naked girl without back so the guts are seen. Mavkas lure people into thickets and tickle them to death. Also the role of planting flowers and dancing on so - called playgrounds ( places were grass doesn't grow ) were given to them. Usually Mavkas live in forests near water."
+	},
+	{
+		name: "Wandering fier",
+		code: "wandering_fier",
+		description:
+			"Soul of a restles human that levitates over it's grave or place of death May be flashing or constant, in shape of sphere or candle fire. Burn in typical blue color. It was considered that Fires lure people to death so to see such phenomenon meant nothing good. Sometimes it was believed that Fires point to the places where treasures were hidden, however those who find it will be cursed. Most often can be find in cemeteries and swamps."
+	},
+	{
+		name: "Nichnytsya",
+		code: "nichnytsya",
+		description:
+			"Night demoness that sneaks into the house and disturbes children's sleep or steal them. Can send nightmeres, insomnia or unwakened sleep, drive crazy. Nichnytsyas depicted as bat- or birdlike female apparition with long dark hair. It was believed that they are driven by emotions so they can be casted out with words. Witches that haven't got their own children or women who killed their mother after death could become Nichnytsyas."
+	},
+	{
+		name: "Vovkulaka",
+		code: "vovkulaka",
+		description:
+			"Man who can become a wolf, werewolf. people could be born this way or forcefully become ones by turning in. Vovkulaka is born if pregnant with boy woman sees a wolf or if a boy is conceived against holiday or fast. Turned Vovkulakas can return their human apperance, however born ones can't. Man turns into a wolf at night. Vovkulaka can be recognized among other wolf by it's red eyes."
+	}
+];
+
+const LEVELS = {
+	easier: 2,
+	easy: 4,
+	normal: 5,
+	hard: 7,
+	harder: 10
+};
+
+const getTemplate = (creature, fliped = true, disabled = false) => {
+	let flipedClass = fliped ? "fliped" : "";
+	let disabledAttr = disabled ? "disabled" : "";
+	return `<div class="card-place"><button ${disabledAttr} style="--deg: ${getRandomArbitrary(
+		-1.5,
+		1.5
+	)}deg;" data-code="${creature.code}" class="card ${flipedClass} ${
+		creature.code
+	}">
+    <div class="card__side_back"></div>
+    <div class="card__side_front"></div>
+</button></div>`;
+};
+
+const getTemplateArticle = (creature) => {
+	return `<article><button disabled style="--deg: 0deg;" class="card ${creature.code}">
+    <div class="card__side_back"></div>
+    <div class="card__side_front"></div>
+</button><div><h2 style="color: var(--${creature.code}-tcap-color)">${creature.name}</h2><p>${creature.description}</p></div></article>`;
+};
+
+const victoryEvent = new Event("victory");
+
+window.addEventListener(
+	"victory",
+	function (e) {
+		let html = ``;
+
+		openPairs.forEach((p) => {
+			html += getTemplateArticle(p, true, false);
+		});
+		html += "</div>";
+		victoryBlock.innerHTML = html;
+		cardTable.innerHTML = ``;
+	},
+	false
+);
+
+let cardTable = document.querySelector("#cardTable");
+let victoryBlock = document.querySelector(".victory");
+let statsBlock = document.querySelector("#stats");
+let allPairs = 0;
+let openPairs = [];
+let moves = 0;
+
+function resetStats() {
+	allPairs = 0;
+	openPairs = [];
+	moves = 0;
+}
+
+function getCharacterByCode(code) {
+	for (let i = 0; i < CHARACTERS.length; i++) {
+		const ch = CHARACTERS[i];
+		if (ch.code == code) return ch;
+	}
+
+	return null;
+}
+
+// start()
+startScreen();
+
+function startScreen() {
+	let html = ``;
+
+	CHARACTERS.forEach((p) => {
+		html += getTemplate(p, false, true);
+	});
+	cardTable.innerHTML = html;
+}
+
+let opened = [];
+
+function openCard(card) {
+	if (opened.length >= 2) return;
+
+	card.style.setProperty("--deg", `${getRandomArbitrary(-1.5, 1.5)}deg`);
+	card.classList.remove("fliped");
+	card.disabled = true;
+	card.blur();
+	opened.push(card);
+
+	if (opened.length == 2) {
+		moves++;
+		if (opened[0].dataset["code"] == opened[1].dataset["code"]) {
+			openPairs.push(getCharacterByCode(opened[0].dataset["code"]));
+			opened = [];
+		} else {
+			setTimeout(() => {
+				// console.log("WRONG :(");
+				opened[0].classList.add("fliped");
+				opened[1].classList.add("fliped");
+				opened[0].disabled = false;
+				opened[1].disabled = false;
+				opened = [];
+			}, 1000);
+		}
+
+		updateStats();
+
+		if (allPairs == openPairs.length) {
+			window.dispatchEvent(victoryEvent);
+		}
+	}
+}
+
+function updateStats() {
+	statsBlock.innerText = `Open: ${openPairs.length}/${allPairs} pairs by ${moves} moves`;
+}
+
+function init() {
+	let cards = document.querySelectorAll(".card");
+
+	cards.forEach((card) => {
+		card.addEventListener("click", (e) => {
+			openCard(card);
+		});
+	});
+}
+
+function start(e) {
+	resetStats();
+	victoryBlock.innerHTML = ``;
+	e.innerText = "ReStart";
+
+	opened = [];
+
+	let l = document.querySelector('input[name="level"]:checked').value;
+
+	cardTable.className = "";
+	cardTable.classList.add("card_table", l);
+
+	let pairs = createArray(LEVELS[l]);
+	allPairs = LEVELS[l];
+	pairs = shuffle(shuffle(shuffle(pairs)));
+	let html = ``;
+
+	pairs.forEach((p) => {
+		html += getTemplate(p, true, false);
+	});
+	cardTable.innerHTML = html;
+	init();
+}
+
+function createArray(pairCount = 5) {
+	if (pairCount > CHARACTERS.length) {
+		throw new Error(`Pair count more ${CHARACTERS.length}`);
+	}
+
+	let source = [];
+	source.push(...CHARACTERS);
+	let result = [];
+
+	for (let i = 0; i < pairCount; i++) {
+		let randomIndex = Math.floor(Math.random() * source.length);
+		let removed = source.splice(randomIndex, 1);
+		result.push(removed[0]);
+		result.push(removed[0]);
+	}
+
+	return result;
+}
+
+function shuffle(array) {
+	let currentIndex = array.length,
+		randomIndex;
+
+	// While there remain elements to shuffle.
+	while (currentIndex != 0) {
+		// Pick a remaining element.
+		randomIndex = Math.floor(Math.random() * currentIndex);
+		currentIndex--;
+
+		// And swap it with the current element.
+		[array[currentIndex], array[randomIndex]] = [
+			array[randomIndex],
+			array[currentIndex]
+		];
+	}
+
+	return array;
+}
+
+/**
+ * Returns a random number between min (inclusive) and max (exclusive)
+ */
+function getRandomArbitrary(min, max) {
+	return Math.random() * (max - min) + min;
+}
+
+/**
+ * Returns a random integer between min (inclusive) and max (inclusive).
+ * The value is no lower than min (or the next integer greater than min
+ * if min isn't an integer) and no greater than max (or the next integer
+ * lower than max if max isn't an integer).
+ * Using Math.round() will give you a non-uniform distribution!
+ */
+function getRandomInt(min, max) {
+	min = Math.ceil(min);
+	max = Math.floor(max);
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+        </script>
+    </body>
+</html>
